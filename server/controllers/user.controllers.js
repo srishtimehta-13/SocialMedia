@@ -82,6 +82,9 @@ export const loginUser = async (req, res) => {
 
     console.log(passwordMatched);
 
+    const token = genToken(user._id);
+    res.cookie("token", token, cookieOptions);
+
     res.status(200).json({ message: "User Logged In" });
   } catch (error) {
     res.status(500).json({ message: "Server crashed", error: error.message });
@@ -93,3 +96,12 @@ export const getMe = (req , res)=>{
     const authenticatedUser = req.user
     res.status(200).json({authenticatedUser})
 }
+
+export const logout = (req, res) => {
+    res.clearCookie("token");
+
+    return res.status(200).json({
+        success: true,
+        message: "Logged out successfully"
+    });
+};
