@@ -7,3 +7,7 @@ function Home() {
 }
 
 export default Home
+
+
+//Public Routes - Resources accesible publicly
+// Protected Routes - verification required to access
