@@ -26,9 +26,22 @@ const userSchema = new mongoose.Schema({
         type: String
     },
 
-    followers: [],
+    followers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            // 6aa10de974c1b2368e521bd9
+            ref: "User"
+        }
+    ],
+    // People who follow me
 
-    following: [],
+    followings: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
+    ],
+    // People I follow
 
     bio: {
         type: String

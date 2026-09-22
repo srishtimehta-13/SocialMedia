@@ -1,13 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 function Home() {
+  const { user } = useAuth()
+
   return (
-    <div>Home</div>
+    <div>
+      <h1 className='text-4xl'>Home</h1>
+      <h3 className='text-4xl'>{user?.username}</h3>
+      <Link
+        to={`/profile`}
+        className='inline-block mt-4 px-4 py-2 rounded-lg bg-slate-900 text-white'
+      >
+        Go to Profile
+      </Link>
+    </div>
   )
 }
 
 export default Home
-
-
-//Public Routes - Resources accesible publicly
-// Protected Routes - verification required to access
