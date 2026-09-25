@@ -4,6 +4,8 @@ import dotenv from 'dotenv'
 import userRoutes from './routes/user.route.js'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import postRoutes from './routes/post.routes.js'
+import reelRoutes from './routes/reel.routes.js'
 
 const app = express()
 const Port = 8085
@@ -22,13 +24,14 @@ app.use(cors(
     {
         origin : 'http://localhost:5173',
         methods : ['POST','GET','PUT','DELETE'],
-        credentials : true
+        credentials : true 
     }
 ))
 
 
 app.use('/users' , userRoutes)
-
+app.use('/post' , postRoutes)
+app.use('/reel' , reelRoutes)
 
 
 app.get('/', (req, res) => {
