@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import postRoutes from './routes/post.routes.js'
 import reelRoutes from './routes/reel.routes.js'
+import storyRoutes from './routes/story.routes.js'
 
 const app = express()
 const Port = 8085
@@ -18,20 +19,25 @@ mongoose.connect(process.env.dbUrl).then(() => {
     console.log(err)
 })
 
-app.use(express.json())
-app.use(cookieParser())
 app.use(cors(
     {
-        origin : 'http://localhost:5173',
-        methods : ['POST','GET','PUT','DELETE'],
-        credentials : true 
+        origin : "http://localhost:5173",
+        credentials : true,
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
     }
 ))
+
+
+app.use(express.json())
+app.use(cookieParser())
+
 
 
 app.use('/users' , userRoutes)
 app.use('/post' , postRoutes)
 app.use('/reel' , reelRoutes)
+app.use('/story' , storyRoutes)
+
 
 
 app.get('/', (req, res) => {
@@ -42,3 +48,9 @@ app.get('/', (req, res) => {
 app.listen(Port, () => {
     console.log(`Server Startet at ${Port}`)
 })
+
+
+
+
+
+

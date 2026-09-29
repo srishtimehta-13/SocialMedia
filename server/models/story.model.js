@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const postSchema = new mongoose.Schema({
+const storySchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,//1234
         ref: "User",
@@ -17,12 +17,20 @@ const postSchema = new mongoose.Schema({
     likes:[{
         type : mongoose.Schema.Types.ObjectId,
         ref : 'User',
-    }]
+    }],
+
+    expiresAt:{
+        type : Date,
+        required : true
+
+    }
+
+
 
 
 } , {timestamps: true})
 
 
-const Post = mongoose.model('Post', postSchema)
+const Story = mongoose.model('Story', storySchema)
 
-export default Post
+export default Story
